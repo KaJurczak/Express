@@ -28,6 +28,18 @@ app.get('/about', (req, res) => {
   res.show('about.html');
 });
 
+app.get('/contact', (req, res) => {
+  res.show('contact.html');
+});
+
+app.get('/info', (req, res) => {
+  res.show('info.html');
+});
+
+app.get('/history', (req, res) => {
+  res.show('history.html');
+});
+
 app.use((req, res) => {
   res.status(404).show('error.html');
 })
