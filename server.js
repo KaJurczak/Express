@@ -7,41 +7,26 @@ const app = express();
 app.engine('.hbs', hbs());
 app.set('view engine', '.hbs');
 
-app.use((req, res, next) => {
-  res.show = (name) => {
-    res.sendFile(path.join(__dirname, `/views/${name}`));
-  };
-  next();
-});
-
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use('/user', (req, res) => {
-  res.show('forbidden.html'); //there I can write res.send('You need to log in') if HTML file is not necessary
-});
-
 app.get('/', (req, res) => {
-  res.show('index.html');
-});
-
-app.get('/home', (req, res) => {
-  res.show('index.html');
+  res.render('index');
 });
 
 app.get('/about', (req, res) => {
-  res.show('about.html');
+  res.render('about');
 });
 
 app.get('/contact', (req, res) => {
-  res.show('contact.html');
+  res.render('contact');
 });
 
 app.get('/info', (req, res) => {
-  res.show('info.html');
+  res.render('info');
 });
 
 app.get('/history', (req, res) => {
-  res.show('history.html');
+  res.render('history');
 });
 
 app.get('/hello/:name', (req, res) => {
@@ -49,7 +34,7 @@ app.get('/hello/:name', (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).show('error.html');
+  res.status(404).render('error');
 })
 
 app.listen(8000, () => {
